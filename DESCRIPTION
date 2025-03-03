@@ -20,7 +20,8 @@ Imports:
     sf,
     tibble,
     dplyr,
-    readr
+    readr,
+    stringi
 Suggests: 
     testthat (>= 3.0.0),
     roxygen2,
