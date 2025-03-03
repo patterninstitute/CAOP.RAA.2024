@@ -54,7 +54,7 @@ ggplot(mapping = aes(fill = municipality)) +
   guides(fill = "none")
 ```
 
-Parishes of the São Miguel islandÇ
+Parishes of the São Miguel island:
 
 ```{r dev='svg', fig.width=12}
 (parishes <- parishes())

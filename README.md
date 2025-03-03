@@ -106,7 +106,7 @@ ggplot(mapping = aes(fill = municipality)) +
 
 <img src="man/figures/README-unnamed-chunk-3-1.svg" width="100%" />
 
-Parishes of the São Miguel islandÇ
+Parishes of the São Miguel island:
 
 ``` r
 (parishes <- parishes())
