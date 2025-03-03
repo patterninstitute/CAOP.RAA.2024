@@ -1,0 +1,71 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# CAOP.RAA.2024
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+The goal of CAOP.RAA.2024 is to provide the official administrative boundaries
+of the Azores (Região Autónoma dos Açores (RAA)) as defined in the 2024 edition
+of the Carta Administrativa Oficial de Portugal (CAOP), published by the
+Direção-Geral do Território (DGT). The package includes convenience functions to
+import these boundaries as 'sf' objects for spatial analysis in R.
+
+## Installation
+
+``` r
+# install.packages("pak")
+pak::pak("patterninstitute/CAOP.RAA.2024")
+```
+
+## Data
+
+Districts (islands):
+
+```{r dev='svg', fig.width=12}
+library(CAOP.RAA.2024)
+library(ggplot2)
+
+(districts <- districts())
+ggplot(mapping = aes(fill = district)) +
+  geom_sf(data = districts, col = "white") +
+  guides(fill = "none")
+```
+
+Municipalities:
+
+```{r dev='svg', fig.width=12}
+(mun <- municipalities())
+ggplot(mapping = aes(fill = municipality)) +
+  geom_sf(data = mun, col = "white") +
+  guides(fill = "none")
+```
+
+Parishes of the São Miguel islandÇ
+
+```{r dev='svg', fig.width=12}
+(parishes <- parishes())
+parishes |>
+  dplyr::filter(district == "Ilha de São Miguel") |>
+  ggplot(mapping = aes(fill = parish)) +
+  geom_sf(col = "white") +
+  guides(fill = "none")
+```
+
+## Sources
+
+- [Carta Administrativa Oficial de Portugal](https://www.dgterritorio.gov.pt/cartografia/cartografia-tematica/caop)
+- [GitHub CAOP](https://github.com/dgterritorio/CAOP)
