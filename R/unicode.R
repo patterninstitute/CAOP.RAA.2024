@@ -1,1 +1,3 @@
-u <- stringi::stri_unescape_unicode
+u <- function(x) {
+  stringi::stri_unescape_unicode(str = x)
+}
