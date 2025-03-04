@@ -6,7 +6,7 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of CAOP.RAA.2024 is to provide the official administrative
+The goal of `{CAOP.RAA.2024}` is to provide the official administrative
 boundaries of the Azores (Região Autónoma dos Açores (RAA)) as defined
 in the 2024 edition of the Carta Administrativa Oficial de Portugal
 (CAOP), published by the Direção-Geral do Território (DGT). The package
@@ -35,14 +35,13 @@ projections:
 
 Although those functions offer the most accurate projection, they can’t
 be combined into one single sf object, as this requires the same CRS for
-all features. Alternatively, we also offer transformations for EPSG:3035
-(ETRS89-extended / LAEA Europe) and EPSG:4326 (WGS 84) which permit
-having all islands data in one single sf object. For these data, use
-these functions:
+all features. Alternatively, we also offer a default LAEA projection
+centered on the Azores which allow all islands data in one single sf
+object. For these data, use these functions:
 
-- `parishes("3035")` or `parishes_26N("4326")`
-- `municipalities("3035")` or `municipalities("4326")`
-- `districts("3035")` or `districts("4326")`
+- `parishes()`
+- `municipalities()`
+- `districts()`
 
 ## Data
 
@@ -52,7 +51,6 @@ Districts (islands):
 library(CAOP.RAA.2024)
 library(ggplot2)
 
-# districts() defaults to districts("3035").
 (districts <- districts())
 #> Simple feature collection with 9 features and 6 fields
 #> Geometry type: MULTIPOLYGON
@@ -92,7 +90,7 @@ ggplot(mapping = aes(fill = district)) +
 Municipalities:
 
 ``` r
-# municipalities() defaults to municipalities("3035").
+# municipalities() defaults to municipalities("EPSG:3035").
 (mun <- municipalities())
 #> Simple feature collection with 19 features and 6 fields
 #> Geometry type: MULTIPOLYGON
@@ -135,7 +133,6 @@ ggplot(mapping = aes(fill = municipality)) +
 Parishes of the São Miguel island:
 
 ``` r
-# parishes() defaults to parishes("3035").
 (parishes <- parishes())
 #> Simple feature collection with 156 features and 6 fields
 #> Geometry type: MULTIPOLYGON
@@ -190,7 +187,6 @@ guides(fill = "none")
 <img src="man/figures/README-unnamed-chunk-5-1.svg" width="100%" />
 
 ``` r
-
 # WGS 84 projection
 ggplot() +
 geom_sf(data = eez(crs = "EPSG:4326"), fill = NA, linewidth = 1, col = "gray") +
