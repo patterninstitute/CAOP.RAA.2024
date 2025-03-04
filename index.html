@@ -50,7 +50,7 @@
 </h1></div>
 <!-- badges: start -->
 <!-- badges: end -->
-<p>The goal of CAOP.RAA.2024 is to provide the official administrative boundaries of the Azores (Região Autónoma dos Açores (RAA)) as defined in the 2024 edition of the Carta Administrativa Oficial de Portugal (CAOP), published by the Direção-Geral do Território (DGT). The package includes convenience functions to import these boundaries as ‘sf’ objects for spatial analysis in R.</p>
+<p>The goal of <a href="https://github.com/patterninstitute/CAOP.RAA.2024" class="external-link">CAOP.RAA.2024</a> is to provide the official administrative boundaries of the Azores (Região Autónoma dos Açores (RAA)) as defined in the 2024 edition of the Carta Administrativa Oficial de Portugal (CAOP), published by the Direção-Geral do Território (DGT). The package includes convenience functions to import these boundaries as ‘sf’ objects for spatial analysis in R.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
@@ -73,17 +73,11 @@
 <code><a href="reference/districts.html">districts_25N()</a></code> and <code><a href="reference/districts.html">districts_26N()</a></code>
 </li>
 </ul>
-<p>Although those functions offer the most accurate projection, they can’t be combined into one single sf object, as this requires the same CRS for all features. Alternatively, we also offer transformations for EPSG:3035 (ETRS89-extended / LAEA Europe) and EPSG:4326 (WGS 84) which permit having all islands data in one single sf object. For these data, use these functions:</p>
+<p>Although those functions offer the most accurate projection, they can’t be combined into one single sf object, as this requires the same CRS for all features. Alternatively, we also offer a default LAEA projection centered on the Azores which allow all islands data in one single sf object. For these data, use these functions:</p>
 <ul>
-<li>
-<code>parishes("3035")</code> or <code>parishes_26N("4326")</code>
-</li>
-<li>
-<code>municipalities("3035")</code> or <code>municipalities("4326")</code>
-</li>
-<li>
-<code>districts("3035")</code> or <code>districts("4326")</code>
-</li>
+<li><code><a href="reference/parishes.html">parishes()</a></code></li>
+<li><code><a href="reference/municipalities.html">municipalities()</a></code></li>
+<li><code><a href="reference/districts.html">districts()</a></code></li>
 </ul>
 </div>
 <div class="section level2">
@@ -94,7 +88,6 @@
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/patterninstitute/CAOP.RAA.2024" class="external-link">CAOP.RAA.2024</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># districts() defaults to districts("3035").</span></span>
 <span><span class="op">(</span><span class="va">districts</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/districts.html">districts</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Simple feature collection with 9 features and 6 fields</span></span>
 <span><span class="co">#&gt; Geometry type: MULTIPOLYGON</span></span>
@@ -128,7 +121,7 @@
 <p><img src="reference/figures/README-unnamed-chunk-2-1.svg" width="100%"></p>
 <p>Municipalities:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># municipalities() defaults to municipalities("3035").</span></span>
+<code class="sourceCode R"><span><span class="co"># municipalities() defaults to municipalities("EPSG:3035").</span></span>
 <span><span class="op">(</span><span class="va">mun</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/municipalities.html">municipalities</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Simple feature collection with 19 features and 6 fields</span></span>
 <span><span class="co">#&gt; Geometry type: MULTIPOLYGON</span></span>
@@ -165,8 +158,7 @@
 <p><img src="reference/figures/README-unnamed-chunk-3-1.svg" width="100%"></p>
 <p>Parishes of the São Miguel island:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># parishes() defaults to parishes("3035").</span></span>
-<span><span class="op">(</span><span class="va">parishes</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/parishes.html">parishes</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="op">(</span><span class="va">parishes</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/parishes.html">parishes</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Simple feature collection with 156 features and 6 fields</span></span>
 <span><span class="co">#&gt; Geometry type: MULTIPOLYGON</span></span>
 <span><span class="co">#&gt; Dimension:     XY</span></span>
@@ -214,8 +206,7 @@
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guides.html" class="external-link">guides</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-5-1.svg" width="100%"></p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
-<span><span class="co"># WGS 84 projection</span></span>
+<code class="sourceCode R"><span><span class="co"># WGS 84 projection</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="fu"><a href="reference/eez.html">eez</a></span><span class="op">(</span>crs <span class="op">=</span> <span class="st">"EPSG:4326"</span><span class="op">)</span>, fill <span class="op">=</span> <span class="cn">NA</span>, linewidth <span class="op">=</span> <span class="fl">1</span>, col <span class="op">=</span> <span class="st">"gray"</span><span class="op">)</span> <span class="op">+</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="fu"><a href="reference/districts.html">districts</a></span><span class="op">(</span>crs <span class="op">=</span> <span class="st">"EPSG:4326"</span><span class="op">)</span>, mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="va">district</span><span class="op">)</span>, col <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span> <span class="op">+</span></span>
