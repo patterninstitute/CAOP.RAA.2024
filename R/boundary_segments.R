@@ -1,8 +1,13 @@
 #' Azorean boundary segments
 #'
 #' [boundary_segments()] returns the boundary segments that separate
-#' administrative entities or borders with the Atlantic Ocean in the Azores in
-#' WGS84 (EPSG: 4326) for latitude and longitude coordinates.
+#' administrative entities or borders with the Atlantic Ocean in the Azores.
+#'
+#' @param crs Coordinate reference system (CRS) passed on to
+#'   [st_transform()][sf::st_transform]. Defaults to a custom CRS centered on
+#'   the Azores, see [laea_azores_proj()] for more details. Other possible
+#'   options are `"EPSG: 3035"` for ETRS89-extended / LAEA Europe or
+#'   `"EPSG:4326"` for WGS 84.
 #'
 #' @returns A simple features ([sf][sf::sf]) object with seven fields:
 #'
@@ -23,11 +28,12 @@
 #' boundary_segments_26N()
 #'
 #' @export
-boundary_segments <- function() {
-  boundary_segments_25N_wgs84 <- sf::st_transform(x = boundary_segments_25N(), crs = 4326)
-  boundary_segments_26N_wgs84 <- sf::st_transform(x = boundary_segments_26N(), crs = 4326)
+boundary_segments <- function(crs = laea_azores_proj()) {
 
-  dplyr::bind_rows(boundary_segments_25N_wgs84, boundary_segments_26N_wgs84)
+  boundary_segments_25N_proj <- sf::st_transform(x = boundary_segments_25N(), crs = crs)
+  boundary_segments_26N_proj <- sf::st_transform(x = boundary_segments_26N(), crs = crs)
+
+  dplyr::bind_rows(boundary_segments_25N_proj, boundary_segments_26N_proj)
 }
 
 #' @description

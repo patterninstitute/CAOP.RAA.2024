@@ -6,11 +6,18 @@
 \alias{parishes_26N}
 \title{Azorean civil administrative parishes}
 \usage{
-parishes()
+parishes(crs = laea_azores_proj())
 
 parishes_25N()
 
 parishes_26N()
+}
+\arguments{
+\item{crs}{Coordinate reference system (CRS) passed on to
+\link[sf:st_transform]{st_transform()}. Defaults to a custom CRS centered on
+the Azores, see \code{\link[=laea_azores_proj]{laea_azores_proj()}} for more details. Other possible
+options are \code{"EPSG: 3035"} for ETRS89-extended / LAEA Europe or
+\code{"EPSG:4326"} for WGS 84.}
 }
 \value{
 A simple features (\link[sf:sf]{sf}) object with six fields:
@@ -27,8 +34,7 @@ municipality and FR for the parish (freguesia in Portuguese).}
 }
 }
 \description{
-\code{\link[=parishes]{parishes()}} returns the boundaries of civil parishes in the Azores in
-WGS84 (EPSG: 4326) for latitude and longitude coordinates.
+\code{\link[=parishes]{parishes()}} returns the boundaries of civil parishes in the Azores.
 
 \code{\link[=parishes_25N]{parishes_25N()}} returns the parishes in the meter-based projection PTRA08 /
 UTM zone 25N, i.e. those parishes in the western-most part of the

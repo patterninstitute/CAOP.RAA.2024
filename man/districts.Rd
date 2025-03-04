@@ -6,11 +6,18 @@
 \alias{districts_26N}
 \title{Azorean districts}
 \usage{
-districts()
+districts(crs = laea_azores_proj())
 
 districts_25N()
 
 districts_26N()
+}
+\arguments{
+\item{crs}{Coordinate reference system (CRS) passed on to
+\link[sf:st_transform]{st_transform()}. Defaults to a custom CRS centered on
+the Azores, see \code{\link[=laea_azores_proj]{laea_azores_proj()}} for more details. Other possible
+options are \code{"EPSG: 3035"} for ETRS89-extended / LAEA Europe or
+\code{"EPSG:4326"} for WGS 84.}
 }
 \value{
 A simple features (\link[sf:sf]{sf}) object with six fields:
@@ -29,8 +36,7 @@ municipality and FR for the district (freguesia in Portuguese).}
 }
 }
 \description{
-\code{\link[=districts]{districts()}} returns the boundaries of districts (islands) in the Azores in
-WGS84 (EPSG: 4326) for latitude and longitude coordinates.
+\code{\link[=districts]{districts()}} returns the boundaries of districts (islands) in the Azores.
 
 \code{\link[=districts_25N]{districts_25N()}} returns the districts in the meter-based projection PTRA08
 / UTM zone 25N, i.e. those districts in the western-most part of the

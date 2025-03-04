@@ -6,11 +6,18 @@
 \alias{municipalities_26N}
 \title{Azorean municipalities}
 \usage{
-municipalities()
+municipalities(crs = laea_azores_proj())
 
 municipalities_25N()
 
 municipalities_26N()
+}
+\arguments{
+\item{crs}{Coordinate reference system (CRS) passed on to
+\link[sf:st_transform]{st_transform()}. Defaults to a custom CRS centered on
+the Azores, see \code{\link[=laea_azores_proj]{laea_azores_proj()}} for more details. Other possible
+options are \code{"EPSG: 3035"} for ETRS89-extended / LAEA Europe or
+\code{"EPSG:4326"} for WGS 84.}
 }
 \value{
 A simple features (\link[sf:sf]{sf}) object with six fields:
@@ -27,8 +34,7 @@ municipality.}
 }
 }
 \description{
-\code{\link[=municipalities]{municipalities()}} returns the boundaries of municipalities in the Azores in
-WGS84 (EPSG: 4326) for latitude and longitude coordinates.
+\code{\link[=municipalities]{municipalities()}} returns the boundaries of municipalities in the Azores.
 
 \code{\link[=municipalities_25N]{municipalities_25N()}} returns the municipalities in the meter-based
 projection PTRA08 / UTM zone 25N, i.e. those municipalities in the

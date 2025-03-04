@@ -1,6 +1,6 @@
 Package: CAOP.RAA.2024
 Title: Official Administrative Map of the Azores (CAOP 2024)
-Version: 0.0.1
+Version: 0.0.2
 Authors@R: c(
     person("Ramiro", "Magno", , "rmagno@pattern.institute", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0001-5226-3441")),
@@ -21,7 +21,8 @@ Imports:
     tibble,
     dplyr,
     readr,
-    stringi
+    stringi,
+    glue
 Suggests: 
     testthat (>= 3.0.0),
     roxygen2,

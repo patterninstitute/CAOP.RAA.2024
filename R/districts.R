@@ -1,7 +1,12 @@
 #' Azorean districts
 #'
-#' [districts()] returns the boundaries of districts (islands) in the Azores in
-#' WGS84 (EPSG: 4326) for latitude and longitude coordinates.
+#' [districts()] returns the boundaries of districts (islands) in the Azores.
+#'
+#' @param crs Coordinate reference system (CRS) passed on to
+#'   [st_transform()][sf::st_transform]. Defaults to a custom CRS centered on
+#'   the Azores, see [laea_azores_proj()] for more details. Other possible
+#'   options are `"EPSG: 3035"` for ETRS89-extended / LAEA Europe or
+#'   `"EPSG:4326"` for WGS 84.
 #'
 #' @returns A simple features ([sf][sf::sf]) object with six fields:
 #'
@@ -24,11 +29,12 @@
 #' districts_26N()
 #'
 #' @export
-districts <- function() {
-  districts_25N_wgs84 <- sf::st_transform(x = districts_25N(), crs = 4326)
-  districts_26N_wgs84 <- sf::st_transform(x = districts_26N(), crs = 4326)
+districts <- function(crs = laea_azores_proj()) {
 
-  dplyr::bind_rows(districts_25N_wgs84, districts_26N_wgs84)
+  districts_25N_proj <- sf::st_transform(x = districts_25N(), crs = crs)
+  districts_26N_proj <- sf::st_transform(x = districts_26N(), crs = crs)
+
+  dplyr::bind_rows(districts_25N_proj, districts_26N_proj)
 }
 
 #' @description

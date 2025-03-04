@@ -31,6 +31,28 @@ import these boundaries as 'sf' objects for spatial analysis in R.
 pak::pak("patterninstitute/CAOP.RAA.2024")
 ```
 
+## Introduction
+
+Boundary data is provided for districts (islands), municipalities and civil
+parishes. Original source for these data has coordinates projected in UTM 25N for
+the western group of islands and UTM 26N for the central and eastern groups.
+These projections offer the most accurate planar representation. Use these
+functions if you want to use these projections:
+
+- `parishes_25N()` and `parishes_26N()`
+- `municipalities_25N()` and `municipalities_26N()`
+- `districts_25N()` and `districts_26N()`
+
+Although those functions offer the most accurate projection, they can't be
+combined into one single sf object, as this requires the same CRS for all
+features. Alternatively, we also offer transformations for EPSG:3035
+(ETRS89-extended / LAEA Europe) and EPSG:4326 (WGS 84) which permit having
+all islands data in one single sf object. For these data, use these functions:
+
+- `parishes("3035")` or `parishes_26N("4326")`
+- `municipalities("3035")` or `municipalities("4326")`
+- `districts("3035")` or `districts("4326")`
+
 ## Data
 
 Districts (islands):
@@ -39,6 +61,7 @@ Districts (islands):
 library(CAOP.RAA.2024)
 library(ggplot2)
 
+# districts() defaults to districts("3035").
 (districts <- districts())
 ggplot(mapping = aes(fill = district)) +
   geom_sf(data = districts, col = "white") +
@@ -48,6 +71,7 @@ ggplot(mapping = aes(fill = district)) +
 Municipalities:
 
 ```{r dev='svg', fig.width=12}
+# municipalities() defaults to municipalities("3035").
 (mun <- municipalities())
 ggplot(mapping = aes(fill = municipality)) +
   geom_sf(data = mun, col = "white") +
@@ -57,6 +81,7 @@ ggplot(mapping = aes(fill = municipality)) +
 Parishes of the São Miguel island:
 
 ```{r dev='svg', fig.width=12}
+# parishes() defaults to parishes("3035").
 (parishes <- parishes())
 parishes |>
   dplyr::filter(district == "Ilha de São Miguel") |>

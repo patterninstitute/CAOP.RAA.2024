@@ -1,8 +1,13 @@
 #' Azorean NUTS
 #'
 #' [nuts()] returns the boundaries of the Nomenclature of Territorial Units for
-#' Statistics (NUTS) in the Azores in WGS84 (EPSG: 4326) for latitude and
-#' longitude coordinates.
+#' Statistics (NUTS).
+#'
+#' @param crs Coordinate reference system (CRS) passed on to
+#'   [st_transform()][sf::st_transform]. Defaults to a custom CRS centered on
+#'   the Azores, see [laea_azores_proj()] for more details. Other possible
+#'   options are `"EPSG: 3035"` for ETRS89-extended / LAEA Europe or
+#'   `"EPSG:4326"` for WGS 84.
 #'
 #' @returns A simple features ([sf][sf::sf]) object with seven fields:
 #'
@@ -22,9 +27,10 @@
 #' nuts_26N()
 #'
 #' @export
-nuts <- function() {
-  nuts_25N_wgs84 <- sf::st_transform(x = nuts_25N(), crs = 4326)
-  nuts_26N_wgs84 <- sf::st_transform(x = nuts_26N(), crs = 4326)
+nuts <- function(crs = laea_azores_proj()) {
+
+  nuts_25N_wgs84 <- sf::st_transform(x = nuts_25N(), crs = crs)
+  nuts_26N_wgs84 <- sf::st_transform(x = nuts_26N(), crs = crs)
 
   dplyr::bind_rows(nuts_25N_wgs84, nuts_26N_wgs84)
 }

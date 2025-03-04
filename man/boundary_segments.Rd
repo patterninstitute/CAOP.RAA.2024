@@ -6,11 +6,18 @@
 \alias{boundary_segments_26N}
 \title{Azorean boundary segments}
 \usage{
-boundary_segments()
+boundary_segments(crs = laea_azores_proj())
 
 boundary_segments_25N()
 
 boundary_segments_26N()
+}
+\arguments{
+\item{crs}{Coordinate reference system (CRS) passed on to
+\link[sf:st_transform]{st_transform()}. Defaults to a custom CRS centered on
+the Azores, see \code{\link[=laea_azores_proj]{laea_azores_proj()}} for more details. Other possible
+options are \code{"EPSG: 3035"} for ETRS89-extended / LAEA Europe or
+\code{"EPSG:4326"} for WGS 84.}
 }
 \value{
 A simple features (\link[sf:sf]{sf}) object with seven fields:
@@ -28,8 +35,7 @@ not yet been officially communicated.}
 }
 \description{
 \code{\link[=boundary_segments]{boundary_segments()}} returns the boundary segments that separate
-administrative entities or borders with the Atlantic Ocean in the Azores in
-WGS84 (EPSG: 4326) for latitude and longitude coordinates.
+administrative entities or borders with the Atlantic Ocean in the Azores.
 
 \code{\link[=boundary_segments_25N]{boundary_segments_25N()}} returns the boundary segments in the meter-based projection PTRA08
 / UTM zone 25N, i.e. those boundary segments in the western-most part of the

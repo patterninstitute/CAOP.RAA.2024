@@ -6,11 +6,18 @@
 \alias{nuts_26N}
 \title{Azorean NUTS}
 \usage{
-nuts()
+nuts(crs = laea_azores_proj())
 
 nuts_25N()
 
 nuts_26N()
+}
+\arguments{
+\item{crs}{Coordinate reference system (CRS) passed on to
+\link[sf:st_transform]{st_transform()}. Defaults to a custom CRS centered on
+the Azores, see \code{\link[=laea_azores_proj]{laea_azores_proj()}} for more details. Other possible
+options are \code{"EPSG: 3035"} for ETRS89-extended / LAEA Europe or
+\code{"EPSG:4326"} for WGS 84.}
 }
 \value{
 A simple features (\link[sf:sf]{sf}) object with seven fields:
@@ -27,8 +34,7 @@ A simple features (\link[sf:sf]{sf}) object with seven fields:
 }
 \description{
 \code{\link[=nuts]{nuts()}} returns the boundaries of the Nomenclature of Territorial Units for
-Statistics (NUTS) in the Azores in WGS84 (EPSG: 4326) for latitude and
-longitude coordinates.
+Statistics (NUTS).
 
 \code{\link[=nuts_25N]{nuts_25N()}} returns the NUTS boundaries in the meter-based projection PTRA08
 / UTM zone 25N, i.e. the NUTS area in the western-most part of the

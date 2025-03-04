@@ -1,7 +1,12 @@
 #' Azorean municipalities
 #'
-#' [municipalities()] returns the boundaries of municipalities in the Azores in
-#' WGS84 (EPSG: 4326) for latitude and longitude coordinates.
+#' [municipalities()] returns the boundaries of municipalities in the Azores.
+#'
+#' @param crs Coordinate reference system (CRS) passed on to
+#'   [st_transform()][sf::st_transform]. Defaults to a custom CRS centered on
+#'   the Azores, see [laea_azores_proj()] for more details. Other possible
+#'   options are `"EPSG: 3035"` for ETRS89-extended / LAEA Europe or
+#'   `"EPSG:4326"` for WGS 84.
 #'
 #' @returns A simple features ([sf][sf::sf]) object with six fields:
 #'
@@ -22,11 +27,12 @@
 #' municipalities_26N()
 #'
 #' @export
-municipalities <- function() {
-  municipalities_25N_wgs84 <- sf::st_transform(x = municipalities_25N(), crs = 4326)
-  municipalities_26N_wgs84 <- sf::st_transform(x = municipalities_26N(), crs = 4326)
+municipalities <- function(crs = laea_azores_proj()) {
 
-  dplyr::bind_rows(municipalities_25N_wgs84, municipalities_26N_wgs84)
+  municipalities_25N_proj <- sf::st_transform(x = municipalities_25N(), crs = crs)
+  municipalities_26N_proj <- sf::st_transform(x = municipalities_26N(), crs = crs)
+
+  dplyr::bind_rows(municipalities_25N_proj, municipalities_26N_proj)
 }
 
 #' @description
