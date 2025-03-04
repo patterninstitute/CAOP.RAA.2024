@@ -29,6 +29,13 @@
 #'  geom_sf(data = districts(), mapping = aes(fill = district), col = "white") +
 #'  guides(fill = "none")
 #'
+#' # WGS 84 projection
+#' ggplot() +
+#' geom_sf(data = eez(crs = "EPSG:4326"), fill = NA, linewidth = 1, col = "gray") +
+#'  geom_sf(data = districts(crs = "EPSG:4326"), mapping = aes(fill = district), col = "white") +
+#'  guides(fill = "none")
+#'
+#'
 #' @export
 eez <- function(crs = laea_azores_proj(), distance = 200) {
 
@@ -36,9 +43,8 @@ eez <- function(crs = laea_azores_proj(), distance = 200) {
   distance_meters <- distance * 1852  # 370,400 meters
   islands <- districts()
   eez_buffers <- sf::st_buffer(islands, dist = distance_meters)
-  eez <- sf::st_union(eez_buffers)
-
-  sf::st_transform(x = eez, crs = crs)
+  eez <- sf::st_union(eez_buffers) |>
+    sf::st_transform(crs = crs)
 
   eez
 }

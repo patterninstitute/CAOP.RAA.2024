@@ -40,4 +40,11 @@ geom_sf(data = eez(), fill = NA, linewidth = 1, col = "gray") +
  geom_sf(data = districts(), mapping = aes(fill = district), col = "white") +
  guides(fill = "none")
 
+# WGS 84 projection
+ggplot() +
+geom_sf(data = eez(crs = "EPSG:4326"), fill = NA, linewidth = 1, col = "gray") +
+ geom_sf(data = districts(crs = "EPSG:4326"), mapping = aes(fill = district), col = "white") +
+ guides(fill = "none")
+
+
 }

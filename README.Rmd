@@ -90,6 +90,23 @@ parishes |>
   guides(fill = "none")
 ```
 
+## Exclusive Economic Zone
+
+```{r dev='svg', fig.width=12}
+# LAEA custom projection
+ggplot() +
+geom_sf(data = eez(), fill = NA, linewidth = 1, col = "gray") +
+geom_sf(data = districts(), mapping = aes(fill = district), col = "white") +
+guides(fill = "none")
+
+# WGS 84 projection
+ggplot() +
+geom_sf(data = eez(crs = "EPSG:4326"), fill = NA, linewidth = 1, col = "gray") +
+geom_sf(data = districts(crs = "EPSG:4326"), mapping = aes(fill = district), col = "white") +
+guides(fill = "none")
+```
+
+
 ## Sources
 
 - [Carta Administrativa Oficial de Portugal](https://www.dgterritorio.gov.pt/cartografia/cartografia-tematica/caop)

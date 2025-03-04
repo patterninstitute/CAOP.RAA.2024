@@ -177,6 +177,29 @@ parishes |>
 
 <img src="man/figures/README-unnamed-chunk-4-1.svg" width="100%" />
 
+## Exclusive Economic Zone
+
+``` r
+# LAEA custom projection
+ggplot() +
+geom_sf(data = eez(), fill = NA, linewidth = 1, col = "gray") +
+geom_sf(data = districts(), mapping = aes(fill = district), col = "white") +
+guides(fill = "none")
+```
+
+<img src="man/figures/README-unnamed-chunk-5-1.svg" width="100%" />
+
+``` r
+
+# WGS 84 projection
+ggplot() +
+geom_sf(data = eez(crs = "EPSG:4326"), fill = NA, linewidth = 1, col = "gray") +
+geom_sf(data = districts(crs = "EPSG:4326"), mapping = aes(fill = district), col = "white") +
+guides(fill = "none")
+```
+
+<img src="man/figures/README-unnamed-chunk-5-2.svg" width="100%" />
+
 ## Sources
 
 - [Carta Administrativa Oficial de
