@@ -22,7 +22,7 @@
 
     <a class="navbar-brand me-2" href="index.html">CAOP.RAA.2024</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -59,6 +59,34 @@
 <span><span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="https://pak.r-lib.org/reference/pak.html" class="external-link">pak</a></span><span class="op">(</span><span class="st">"patterninstitute/CAOP.RAA.2024"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
+<h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
+</h2>
+<p>Boundary data is provided for districts (islands), municipalities and civil parishes. Original source for these data has coordinates projected in UTM 25N for the western group of islands and UTM 26N for the central and eastern groups. These projections offer the most accurate planar representation. Use these functions if you want to use these projections:</p>
+<ul>
+<li>
+<code><a href="reference/parishes.html">parishes_25N()</a></code> and <code><a href="reference/parishes.html">parishes_26N()</a></code>
+</li>
+<li>
+<code><a href="reference/municipalities.html">municipalities_25N()</a></code> and <code><a href="reference/municipalities.html">municipalities_26N()</a></code>
+</li>
+<li>
+<code><a href="reference/districts.html">districts_25N()</a></code> and <code><a href="reference/districts.html">districts_26N()</a></code>
+</li>
+</ul>
+<p>Although those functions offer the most accurate projection, they can’t be combined into one single sf object, as this requires the same CRS for all features. Alternatively, we also offer transformations for EPSG:3035 (ETRS89-extended / LAEA Europe) and EPSG:4326 (WGS 84) which permit having all islands data in one single sf object. For these data, use these functions:</p>
+<ul>
+<li>
+<code>parishes("3035")</code> or <code>parishes_26N("4326")</code>
+</li>
+<li>
+<code>municipalities("3035")</code> or <code>municipalities("4326")</code>
+</li>
+<li>
+<code>districts("3035")</code> or <code>districts("4326")</code>
+</li>
+</ul>
+</div>
+<div class="section level2">
 <h2 id="data">Data<a class="anchor" aria-label="anchor" href="#data"></a>
 </h2>
 <p>Districts (islands):</p>
@@ -66,12 +94,13 @@
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/patterninstitute/CAOP.RAA.2024" class="external-link">CAOP.RAA.2024</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
 <span></span>
+<span><span class="co"># districts() defaults to districts("3035").</span></span>
 <span><span class="op">(</span><span class="va">districts</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/districts.html">districts</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Simple feature collection with 9 features and 6 fields</span></span>
 <span><span class="co">#&gt; Geometry type: MULTIPOLYGON</span></span>
 <span><span class="co">#&gt; Dimension:     XY</span></span>
-<span><span class="co">#&gt; Bounding box:  xmin: -31.26882 ymin: 36.92763 xmax: -25.01318 ymax: 39.72618</span></span>
-<span><span class="co">#&gt; Geodetic CRS:  WGS 84</span></span>
+<span><span class="co">#&gt; Bounding box:  xmin: -281288.2 ymin: -170294.3 xmax: 266022.8 ymax: 140634.8</span></span>
+<span><span class="co">#&gt; Projected CRS: +proj=laea +lat_0=38.5 +lon_0=-28 +datum=WGS84 +units=m +no_defs</span></span>
 <span><span class="co">#&gt;   id            district     area perimeter n_municipalities n_parishes</span></span>
 <span><span class="co">#&gt; 1 48     Ilha das Flores 14096.22        72                2         11</span></span>
 <span><span class="co">#&gt; 2 49       Ilha do Corvo  1711.45        21                1          1</span></span>
@@ -83,15 +112,15 @@
 <span><span class="co">#&gt; 8 46        Ilha do Pico 44479.53       153                3         17</span></span>
 <span><span class="co">#&gt; 9 47       Ilha do Faial 17305.53        80                1         13</span></span>
 <span><span class="co">#&gt;                         geometry</span></span>
-<span><span class="co">#&gt; 1 MULTIPOLYGON (((-31.23111 3...</span></span>
-<span><span class="co">#&gt; 2 MULTIPOLYGON (((-31.11414 3...</span></span>
-<span><span class="co">#&gt; 3 MULTIPOLYGON (((-25.04616 3...</span></span>
-<span><span class="co">#&gt; 4 MULTIPOLYGON (((-25.44238 3...</span></span>
-<span><span class="co">#&gt; 5 MULTIPOLYGON (((-27.22931 3...</span></span>
-<span><span class="co">#&gt; 6 MULTIPOLYGON (((-27.94872 3...</span></span>
-<span><span class="co">#&gt; 7 MULTIPOLYGON (((-27.81177 3...</span></span>
-<span><span class="co">#&gt; 8 MULTIPOLYGON (((-28.12348 3...</span></span>
-<span><span class="co">#&gt; 9 MULTIPOLYGON (((-28.65557 3...</span></span></code></pre></div>
+<span><span class="co">#&gt; 1 MULTIPOLYGON (((-278363.3 1...</span></span>
+<span><span class="co">#&gt; 2 MULTIPOLYGON (((-267155.3 1...</span></span>
+<span><span class="co">#&gt; 3 MULTIPOLYGON (((262934.5 -1...</span></span>
+<span><span class="co">#&gt; 4 MULTIPOLYGON (((225499.7 -8...</span></span>
+<span><span class="co">#&gt; 5 MULTIPOLYGON (((67086.26 17...</span></span>
+<span><span class="co">#&gt; 6 MULTIPOLYGON (((4441.145 57...</span></span>
+<span><span class="co">#&gt; 7 MULTIPOLYGON (((16402.23 86...</span></span>
+<span><span class="co">#&gt; 8 MULTIPOLYGON (((-10785.79 -...</span></span>
+<span><span class="co">#&gt; 9 MULTIPOLYGON (((-57167.91 2...</span></span></code></pre></div>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span>mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="va">district</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">districts</span>, col <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span> <span class="op">+</span></span>
@@ -99,12 +128,13 @@
 <p><img src="reference/figures/README-unnamed-chunk-2-1.svg" width="100%"></p>
 <p>Municipalities:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="op">(</span><span class="va">mun</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/municipalities.html">municipalities</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="co"># municipalities() defaults to municipalities("3035").</span></span>
+<span><span class="op">(</span><span class="va">mun</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/municipalities.html">municipalities</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Simple feature collection with 19 features and 6 fields</span></span>
 <span><span class="co">#&gt; Geometry type: MULTIPOLYGON</span></span>
 <span><span class="co">#&gt; Dimension:     XY</span></span>
-<span><span class="co">#&gt; Bounding box:  xmin: -31.26882 ymin: 36.92763 xmax: -25.01318 ymax: 39.72618</span></span>
-<span><span class="co">#&gt; Geodetic CRS:  WGS 84</span></span>
+<span><span class="co">#&gt; Bounding box:  xmin: -281288.2 ymin: -170294.3 xmax: 266022.8 ymax: 140634.8</span></span>
+<span><span class="co">#&gt; Projected CRS: +proj=laea +lat_0=38.5 +lon_0=-28 +datum=WGS84 +units=m +no_defs</span></span>
 <span><span class="co">#&gt; First 10 features:</span></span>
 <span><span class="co">#&gt;      id          municipality            district     area perimeter n_parishes</span></span>
 <span><span class="co">#&gt; 1  4801      Lajes das Flores     Ilha das Flores  7004.79        51          7</span></span>
@@ -118,16 +148,16 @@
 <span><span class="co">#&gt; 9  4205        Ribeira Grande  Ilha de São Miguel 18015.13       120         14</span></span>
 <span><span class="co">#&gt; 10 4206  Vila Franca do Campo  Ilha de São Miguel  7796.82        58          6</span></span>
 <span><span class="co">#&gt;                          geometry</span></span>
-<span><span class="co">#&gt; 1  MULTIPOLYGON (((-31.23101 3...</span></span>
-<span><span class="co">#&gt; 2  MULTIPOLYGON (((-31.14735 3...</span></span>
-<span><span class="co">#&gt; 3  MULTIPOLYGON (((-31.11414 3...</span></span>
-<span><span class="co">#&gt; 4  MULTIPOLYGON (((-25.04616 3...</span></span>
-<span><span class="co">#&gt; 5  MULTIPOLYGON (((-25.48391 3...</span></span>
-<span><span class="co">#&gt; 6  MULTIPOLYGON (((-25.1418 37...</span></span>
-<span><span class="co">#&gt; 7  MULTIPOLYGON (((-25.69689 3...</span></span>
-<span><span class="co">#&gt; 8  MULTIPOLYGON (((-25.33571 3...</span></span>
-<span><span class="co">#&gt; 9  MULTIPOLYGON (((-25.50498 3...</span></span>
-<span><span class="co">#&gt; 10 MULTIPOLYGON (((-25.44258 3...</span></span></code></pre></div>
+<span><span class="co">#&gt; 1  MULTIPOLYGON (((-278354.8 1...</span></span>
+<span><span class="co">#&gt; 2  MULTIPOLYGON (((-270941.6 1...</span></span>
+<span><span class="co">#&gt; 3  MULTIPOLYGON (((-267155.3 1...</span></span>
+<span><span class="co">#&gt; 4  MULTIPOLYGON (((262934.5 -1...</span></span>
+<span><span class="co">#&gt; 5  MULTIPOLYGON (((221802.1 -8...</span></span>
+<span><span class="co">#&gt; 6  MULTIPOLYGON (((251756.7 -7...</span></span>
+<span><span class="co">#&gt; 7  MULTIPOLYGON (((202982.7 -8...</span></span>
+<span><span class="co">#&gt; 8  MULTIPOLYGON (((234835.9 -8...</span></span>
+<span><span class="co">#&gt; 9  MULTIPOLYGON (((219803.1 -7...</span></span>
+<span><span class="co">#&gt; 10 MULTIPOLYGON (((225482.7 -8...</span></span></code></pre></div>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span>mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="va">municipality</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">mun</span>, col <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span> <span class="op">+</span></span>
@@ -135,12 +165,13 @@
 <p><img src="reference/figures/README-unnamed-chunk-3-1.svg" width="100%"></p>
 <p>Parishes of the São Miguel island:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="op">(</span><span class="va">parishes</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/parishes.html">parishes</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="co"># parishes() defaults to parishes("3035").</span></span>
+<span><span class="op">(</span><span class="va">parishes</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/parishes.html">parishes</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Simple feature collection with 156 features and 6 fields</span></span>
 <span><span class="co">#&gt; Geometry type: MULTIPOLYGON</span></span>
 <span><span class="co">#&gt; Dimension:     XY</span></span>
-<span><span class="co">#&gt; Bounding box:  xmin: -31.26882 ymin: 36.92763 xmax: -25.01318 ymax: 39.72618</span></span>
-<span><span class="co">#&gt; Geodetic CRS:  WGS 84</span></span>
+<span><span class="co">#&gt; Bounding box:  xmin: -281288.2 ymin: -170294.3 xmax: 266022.8 ymax: 140634.8</span></span>
+<span><span class="co">#&gt; Projected CRS: +proj=laea +lat_0=38.5 +lon_0=-28 +datum=WGS84 +units=m +no_defs</span></span>
 <span><span class="co">#&gt; First 10 features:</span></span>
 <span><span class="co">#&gt;        id                parish          municipality        district    area</span></span>
 <span><span class="co">#&gt; 1  480107              Mosteiro      Lajes das Flores Ilha das Flores  599.39</span></span>
@@ -154,16 +185,16 @@
 <span><span class="co">#&gt; 9  480105      Lajes das Flores      Lajes das Flores Ilha das Flores 1879.13</span></span>
 <span><span class="co">#&gt; 10 480103               Fazenda      Lajes das Flores Ilha das Flores  947.36</span></span>
 <span><span class="co">#&gt;    perimeter                       geometry</span></span>
-<span><span class="co">#&gt; 1         12 MULTIPOLYGON (((-31.22781 3...</span></span>
-<span><span class="co">#&gt; 2         13 MULTIPOLYGON (((-31.22545 3...</span></span>
-<span><span class="co">#&gt; 3         21 MULTIPOLYGON (((-31.11414 3...</span></span>
-<span><span class="co">#&gt; 4         37 MULTIPOLYGON (((-31.18002 3...</span></span>
-<span><span class="co">#&gt; 5         10 MULTIPOLYGON (((-31.14663 3...</span></span>
-<span><span class="co">#&gt; 6         25 MULTIPOLYGON (((-31.20772 3...</span></span>
-<span><span class="co">#&gt; 7         18 MULTIPOLYGON (((-31.14518 3...</span></span>
-<span><span class="co">#&gt; 8         18 MULTIPOLYGON (((-31.14663 3...</span></span>
-<span><span class="co">#&gt; 9         24 MULTIPOLYGON (((-31.1695 39...</span></span>
-<span><span class="co">#&gt; 10        15 MULTIPOLYGON (((-31.15802 3...</span></span></code></pre></div>
+<span><span class="co">#&gt; 1         12 MULTIPOLYGON (((-277962.5 1...</span></span>
+<span><span class="co">#&gt; 2         13 MULTIPOLYGON (((-277707.5 1...</span></span>
+<span><span class="co">#&gt; 3         21 MULTIPOLYGON (((-267155.3 1...</span></span>
+<span><span class="co">#&gt; 4         37 MULTIPOLYGON (((-273740.3 1...</span></span>
+<span><span class="co">#&gt; 5         10 MULTIPOLYGON (((-270883.3 1...</span></span>
+<span><span class="co">#&gt; 6         25 MULTIPOLYGON (((-275904.3 1...</span></span>
+<span><span class="co">#&gt; 7         18 MULTIPOLYGON (((-270573.9 1...</span></span>
+<span><span class="co">#&gt; 8         18 MULTIPOLYGON (((-270883.3 1...</span></span>
+<span><span class="co">#&gt; 9         24 MULTIPOLYGON (((-273020 102...</span></span>
+<span><span class="co">#&gt; 10        15 MULTIPOLYGON (((-271975.5 1...</span></span></code></pre></div>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">parishes</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">district</span> <span class="op">==</span> <span class="st">"Ilha de São Miguel"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
