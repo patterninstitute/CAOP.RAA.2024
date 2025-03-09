@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# CAOP.RAA.2024
+# CAOP.RAA.2024 <a href="https://www.pattern.institute/CAOP.RAA.2024/"><img src="man/figures/logo.svg" align="right" height="139" alt="CAOP.RAA.2024 website" /></a>
 
 <!-- badges: start -->
 <!-- badges: end -->

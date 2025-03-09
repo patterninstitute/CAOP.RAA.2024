@@ -12,7 +12,7 @@ Provides the official administrative boundaries of the Azores (Região Autónoma
 Useful links:
 \itemize{
   \item \url{https://github.com/patterninstitute/CAOP.RAA.2024}
-  \item \url{http://www.pattern.institute/CAOP.RAA.2024/}
+  \item \url{https://www.pattern.institute/CAOP.RAA.2024/}
   \item Report bugs at \url{https://github.com/patterninstitute/CAOP.RAA.2024/issues}
 }
 
