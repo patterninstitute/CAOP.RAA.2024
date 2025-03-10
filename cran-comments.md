@@ -1,3 +1,8 @@
+## Changes since last submission
+
+* Help section is lighter
+* Package code no longer depends on `|>`.
+
 ## R CMD check results
 
 0 errors | 0 warnings | 2 notes
