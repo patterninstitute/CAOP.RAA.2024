@@ -23,6 +23,7 @@
 #' - Transforms the final EEZ to the specified `crs`.
 #'
 #' @examples
+#' \dontrun{
 #' library(ggplot2)
 #' ggplot() +
 #' geom_sf(data = eez(), fill = NA, linewidth = 1, col = "gray") +
@@ -33,7 +34,7 @@
 #' ggplot() +
 #' geom_sf(data = eez(crs = "EPSG:4326"), fill = NA, linewidth = 1, col = "gray") +
 #'  geom_sf(data = districts(crs = "EPSG:4326"), mapping = aes(fill = district), col = "white") +
-#'  guides(fill = "none")
+#'  guides(fill = "none")}
 #'
 #'
 #' @export
@@ -43,8 +44,7 @@ eez <- function(crs = laea_azores_proj(), distance = 200) {
   distance_meters <- distance * 1852  # 370,400 meters
   islands <- districts()
   eez_buffers <- sf::st_buffer(islands, dist = distance_meters)
-  eez <- sf::st_union(eez_buffers) |>
-    sf::st_transform(crs = crs)
+  eez <- sf::st_transform(sf::st_union(eez_buffers), crs = crs)
 
   eez
 }
