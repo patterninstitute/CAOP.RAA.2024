@@ -85,7 +85,7 @@ ggplot(mapping = aes(fill = district)) +
   guides(fill = "none")
 ```
 
-<img src="man/figures/README-unnamed-chunk-2-1.svg" width="100%" />
+<img src="man/figures/README-unnamed-chunk-2-1.png" width="100%" />
 
 Municipalities:
 
@@ -128,7 +128,7 @@ ggplot(mapping = aes(fill = municipality)) +
   guides(fill = "none")
 ```
 
-<img src="man/figures/README-unnamed-chunk-3-1.svg" width="100%" />
+<img src="man/figures/README-unnamed-chunk-3-1.png" width="100%" />
 
 Parishes of the São Miguel island:
 
@@ -172,7 +172,7 @@ parishes |>
   guides(fill = "none")
 ```
 
-<img src="man/figures/README-unnamed-chunk-4-1.svg" width="100%" />
+<img src="man/figures/README-unnamed-chunk-4-1.png" width="100%" />
 
 ## Exclusive Economic Zone
 
@@ -184,7 +184,7 @@ geom_sf(data = districts(), mapping = aes(fill = district), col = "white") +
 guides(fill = "none")
 ```
 
-<img src="man/figures/README-unnamed-chunk-5-1.svg" width="100%" />
+<img src="man/figures/README-unnamed-chunk-5-1.png" width="100%" />
 
 ``` r
 # WGS 84 projection
@@ -194,7 +194,7 @@ geom_sf(data = districts(crs = "EPSG:4326"), mapping = aes(fill = district), col
 guides(fill = "none")
 ```
 
-<img src="man/figures/README-unnamed-chunk-5-2.svg" width="100%" />
+<img src="man/figures/README-unnamed-chunk-5-2.png" width="100%" />
 
 ## Sources
 

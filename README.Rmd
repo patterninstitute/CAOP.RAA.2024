@@ -57,7 +57,7 @@ these functions:
 
 Districts (islands):
 
-```{r dev='svg', fig.width=12}
+```{r dev='png', fig.width=12}
 library(CAOP.RAA.2024)
 library(ggplot2)
 
@@ -69,7 +69,7 @@ ggplot(mapping = aes(fill = district)) +
 
 Municipalities:
 
-```{r dev='svg', fig.width=12}
+```{r dev='png', fig.width=12}
 # municipalities() defaults to municipalities("EPSG:3035").
 (mun <- municipalities())
 ggplot(mapping = aes(fill = municipality)) +
@@ -79,7 +79,7 @@ ggplot(mapping = aes(fill = municipality)) +
 
 Parishes of the São Miguel island:
 
-```{r dev='svg', fig.width=12}
+```{r dev='png', fig.width=12}
 (parishes <- parishes())
 parishes |>
   dplyr::filter(district == "Ilha de São Miguel") |>
@@ -90,7 +90,7 @@ parishes |>
 
 ## Exclusive Economic Zone
 
-```{r dev='svg', fig.width=12}
+```{r dev='png', fig.width=12}
 # LAEA custom projection
 ggplot() +
 geom_sf(data = eez(), fill = NA, linewidth = 1, col = "gray") +
