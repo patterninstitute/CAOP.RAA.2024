@@ -1,7 +1,6 @@
 ## Changes since last submission
 
-* Help section is lighter
-* Package code no longer depends on `|>`.
+* Swapped `\dontrun{}` with `\donttest{}` in `eez()` example. Thanks Beni!
 
 ## R CMD check results
 
