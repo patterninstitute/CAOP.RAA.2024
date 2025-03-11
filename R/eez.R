@@ -23,7 +23,7 @@
 #' - Transforms the final EEZ to the specified `crs`.
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' library(ggplot2)
 #' ggplot() +
 #' geom_sf(data = eez(), fill = NA, linewidth = 1, col = "gray") +
