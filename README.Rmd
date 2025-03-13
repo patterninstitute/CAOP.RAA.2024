@@ -16,6 +16,7 @@ knitr::opts_chunk$set(
 # CAOP.RAA.2024 <a href="https://www.pattern.institute/CAOP.RAA.2024/"><img src="man/figures/logo.svg" align="right" height="139" alt="CAOP.RAA.2024 website" /></a>
 
 <!-- badges: start -->
+[![CRAN status](https://www.r-pkg.org/badges/version/CAOP.RAA.2024)](https://CRAN.R-project.org/package=CAOP.RAA.2024)
 <!-- badges: end -->
 
 The goal of `{CAOP.RAA.2024}` is to provide the official administrative boundaries
